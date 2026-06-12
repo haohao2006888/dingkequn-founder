@@ -2,363 +2,1124 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>定客群 · 创始人问卷</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>定客群调研 · 创始人版 · 伟大印记</title>
 <style>
-:root{--bg:#f5f0eb;--card:#fff;--text:#2c2416;--muted:#8b7355;--accent:#5b4a3a;--input-bg:#faf7f3;--gold:#b8860b}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,"PingFang SC","Noto Serif SC",serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
-.top{background:linear-gradient(135deg,var(--accent),#3d2e1f);color:#fff;text-align:center;padding:36px 20px 28px}
-.top h1{font-size:22px;font-weight:600;margin-bottom:4px}
-.top .sub{font-size:13px;opacity:.75;margin-top:4px}
-.top .badge{display:inline-block;background:var(--gold);color:#fff;font-size:11px;padding:3px 10px;border-radius:10px;margin-top:8px;letter-spacing:1px}
-.section-header{max-width:640px;margin:28px auto 12px;padding:0 20px;font-size:15px;font-weight:700;color:var(--accent);border-left:3px solid var(--gold);padding-left:12px}
-.container{max-width:640px;margin:0 auto;padding:0 20px 60px}
-.q-block{background:var(--card);border-radius:10px;padding:20px;margin-bottom:14px;border:1px solid #e8e0d5;transition:border-color .2s}
-.q-block:hover{border-color:#d4c9b8}
-.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:12px;font-weight:600;margin-right:8px;vertical-align:middle}
-.q-title{font-size:15px;font-weight:600;margin-bottom:6px;display:inline}
-.q-desc{font-size:13px;color:var(--muted);margin-bottom:12px;margin-top:4px}
-textarea{width:100%;min-height:80px;border:1px solid #d4c9b8;border-radius:8px;padding:12px;font-size:14px;resize:vertical;background:var(--input-bg);font-family:inherit;line-height:1.6}
-textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,74,58,.1)}
-.radio-group{display:flex;flex-direction:column;gap:8px}
-.radio-group label{display:flex;align-items:flex-start;gap:8px;padding:10px 14px;border:1px solid #d4c9b8;border-radius:8px;cursor:pointer;font-size:14px;background:var(--input-bg);transition:all .2s}
-.radio-group label:hover{background:#e8e0d5}
-.radio-group input:checked~span{font-weight:600;color:var(--accent)}
-.radio-group label:has(input:checked){border-color:var(--accent);background:#f0ebe0}
-.check-group{display:flex;flex-wrap:wrap;gap:8px}
-.check-group label{display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid #d4c9b8;border-radius:20px;cursor:pointer;font-size:13px;background:var(--input-bg);transition:all .2s}
-.check-group label:hover{background:#e8e0d5}
-.check-group label:has(input:checked){border-color:var(--accent);background:#f0ebe0}
-.rank-group{display:flex;flex-direction:column;gap:10px}
-.rank-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--input-bg);border-radius:8px;border:1px solid #e8e0d5}
-.rank-row span{flex:1;font-size:14px}
-.rank-row select{padding:4px 8px;border:1px solid #d4c9b8;border-radius:6px;font-size:13px;background:#fff}
-.voice-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:#e8e0d5;border:none;border-radius:14px;cursor:pointer;font-size:12px;color:var(--accent);transition:all .2s}
-.voice-btn:hover{background:#d4c9b8}
-.voice-btn.recording{background:#c0392b;color:#fff;animation:pulse .8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-.submit-section{text-align:center;margin-top:28px}
-.submit-btn{padding:14px 48px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:all .2s}
-.submit-btn:hover{background:#3d2e1f}
-.submit-btn:disabled{opacity:.5;cursor:not-allowed}
-.status{text-align:center;padding:14px;margin-top:14px;font-size:14px;border-radius:8px;display:none;white-space:pre-wrap;font-family:monospace;text-align:left;max-width:640px;margin-left:auto;margin-right:auto}
-.status.success{background:#e8f5e9;color:#2e7d32;display:block}
-.status.error{background:#fce4ec;color:#c62828;display:block}
-.footer{text-align:center;padding:20px;color:var(--muted);font-size:12px}
-@media(max-width:480px){.top h1{font-size:18px}.container{padding:0 12px 60px}.q-block{padding:14px}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f0e8;color:#2c2416;line-height:1.8;min-height:100vh}
+.browser-notice{text-align:center;background:#fff3cd;color:#856404;padding:10px 20px;font-size:14px;font-weight:600;border-bottom:1px solid #ffc107}
+.header{background:linear-gradient(135deg,#2c2416,#4a3828);color:#fdf8f0;padding:36px 24px 44px;text-align:center}
+.header h1{font-size:25px;margin-bottom:4px;letter-spacing:1px}
+.header .brand{font-size:13px;opacity:.6;letter-spacing:3px;margin-bottom:14px}
+.header p{font-size:15px;opacity:.78;max-width:420px;margin:0 auto}
+.view{display:none}
+.view.active{display:block}
+
+/* ===== Login ===== */
+.login-wrap{max-width:440px;margin:40px auto;padding:0 20px}
+.login-card{background:#fff;border-radius:14px;padding:32px 24px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.login-card h2{font-size:20px;margin-bottom:8px;text-align:center}
+.login-card .lc-desc{font-size:14px;color:#8c7a5c;text-align:center;margin-bottom:24px}
+.login-card label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:#4a3828}
+.login-card input[type="text"]{width:100%;padding:14px;font-size:17px;border:2px solid #e8dcc8;border-radius:10px;background:#fdf8f0;margin-bottom:16px;font-family:inherit}
+.login-card input[type="text"]:focus{outline:none;border-color:#c9a96e;background:#fff}
+.lc-hint{font-size:13px;color:#8c7a5c;margin-top:-8px;margin-bottom:16px}
+.btn-primary{width:100%;padding:16px;background:#2c2416;color:#fdf8f0;border:none;border-radius:12px;font-size:18px;font-weight:700;cursor:pointer;letter-spacing:1px;transition:all .2s}
+.btn-primary:active{background:#4a3828;transform:scale(.98)}
+
+/* ===== Dashboard ===== */
+.dash-wrap{max-width:640px;margin:0 auto;padding:20px}
+.dash-user{background:#fff;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.dash-user .du-name{font-size:20px;font-weight:700;color:#1a1206}
+.dash-user .du-meta{font-size:14px;color:#8c7a5c;margin-top:4px;line-height:1.6}
+.dash-user .du-bio{font-size:14px;color:#4a3828;margin-top:8px;padding:10px 14px;background:#fdf8f0;border-radius:8px;line-height:1.6}
+.dash-actions{display:flex;gap:12px;margin-bottom:24px}
+.btn-new{flex:1;padding:16px;background:#2c2416;color:#fdf8f0;border:none;border-radius:14px;font-size:17px;font-weight:700;cursor:pointer;text-align:center;letter-spacing:1px;transition:all .2s}
+.btn-new:active{background:#4a3828;transform:scale(.98)}
+.btn-logout{padding:16px 20px;background:#fff;color:#8c7a5c;border:1px solid #e8dcc8;border-radius:14px;font-size:15px;cursor:pointer}
+.history-title{font-size:17px;font-weight:700;color:#1a1206;margin-bottom:16px}
+.history-item{background:#fff;border-radius:12px;padding:18px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.04);cursor:pointer;transition:all .2s;border:1px solid #e8dcc8}
+.history-item:hover{border-color:#c9a96e}
+.history-item .hi-date{font-size:13px;color:#8c7a5c;margin-bottom:6px}
+.history-item .hi-preview{font-size:15px;color:#2c2416;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.history-item .hi-parts{font-size:12px;color:#c9a96e;margin-top:6px}
+.empty-history{text-align:center;padding:40px 20px;color:#8c7a5c;font-size:15px}
+
+/* ===== Survey ===== */
+.survey-wrap{max-width:640px;margin:0 auto;padding:24px 20px 80px}
+.q-card{background:#fff;border-radius:12px;padding:28px 22px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.q-card.founder-card{border:2px dashed #c9a96e;background:linear-gradient(135deg,#fffef9,#fdf8f0)}
+.q-num{display:inline-block;background:#e8dcc8;color:#4a3828;font-size:13px;font-weight:700;padding:4px 16px;border-radius:14px;margin-bottom:10px}
+.q-title{font-size:17px;font-weight:700;color:#1a1206;margin-bottom:6px}
+.q-guide{font-size:14px;color:#8c7a5c;margin-bottom:20px;line-height:1.7;padding:12px 16px;background:#fdf8f0;border-radius:8px;border-left:3px solid #c9a96e}
+.q-guide .guide-icon{font-size:20px;margin-right:6px;vertical-align:-2px}
+.dur-badge{display:inline-block;background:#e8dcc8;color:#4a3828;font-size:11px;padding:1px 8px;border-radius:8px;margin-left:6px;vertical-align:middle}
+.founder-label{display:inline-block;background:#c9a96e;color:#fff;font-size:11px;padding:2px 10px;border-radius:10px;margin-left:8px;vertical-align:middle;letter-spacing:1px}
+.inline-input{width:100%;padding:14px;font-size:16px;border:1.6px solid #e8dcc8;border-radius:10px;background:#fdf8f0;font-family:inherit;margin-top:8px;transition:border-color .2s}
+.inline-input:focus{outline:none;border-color:#c9a96e;background:#fff}
+.inline-input:first-child{margin-top:0}
+
+.voice-bar{display:flex;align-items:center;gap:10px;padding:14px 18px;margin:12px 0 16px;border-radius:28px;background:#fff;border:1.8px solid #d4c5a0;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation;transition:all .25s}
+.voice-bar:active{background:#f5f0e8}
+.vb-icon{font-size:24px;flex-shrink:0}
+.vb-text{font-size:15px;color:#6b5c3e;font-weight:500;flex:1}
+.vb-status{font-size:13px;color:#8c7a5c;flex-shrink:0;min-width:48px;text-align:right;font-weight:600}
+.vb-wave{display:none;gap:3px;align-items:flex-end;height:28px;flex-shrink:0}
+.vb-wave .vb-dot{width:4px;border-radius:2px;background:#e53935;animation:vbWav 0.8s ease-in-out infinite}
+.vb-wave .vb-dot:nth-child(2){animation-delay:0.15s}
+.vb-wave .vb-dot:nth-child(3){animation-delay:0.3s}
+.vb-wave .vb-dot:nth-child(4){animation-delay:0.45s}
+@keyframes vbWav{0%,100%{height:8px}50%{height:24px}}
+.voice-bar.recording{background:#fff5f5;border-color:#e53935;box-shadow:0 0 0 4px rgba(229,57,53,.1)}
+.voice-bar.recording .vb-icon{animation:vbPulse 0.6s ease-in-out infinite}
+.voice-bar.recording .vb-text{color:#c62828}
+.voice-bar.recording .vb-wave{display:flex}
+.voice-bar.recording .vb-status{color:#c62828}
+.voice-bar.has-audio{border-color:#2e7d32;background:#f1f8e9}
+.voice-bar.has-audio .vb-status{color:#2e7d32}
+.vb-delete{display:none;flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1.5px solid #c62828;background:#fff;color:#c62828;font-size:16px;line-height:24px;text-align:center;cursor:pointer;margin-left:4px}
+.voice-bar.has-audio .vb-delete{display:inline-block}
+.vb-delete:active{background:#ffebee}
+@keyframes vbPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+.audio-playback{display:none;margin-top:8px;padding:8px 14px;background:#f1f8e9;border-radius:20px;align-items:center;gap:10px}
+.audio-playback.show{display:flex}
+.audio-playback audio{flex:1;height:32px}
+.audio-playback .ap-dur{font-size:12px;color:#6b5c3e;flex-shrink:0}
+
+textarea{width:100%;min-height:120px;max-height:300px;border:1.6px solid #e8dcc8;border-radius:10px;padding:14px;font-size:16px;font-family:inherit;resize:vertical;background:#fdf8f0;line-height:1.7;overflow-y:auto;transition:border-color .2s;-webkit-overflow-scrolling:touch}
+textarea:focus{outline:none;border-color:#c9a96e;background:#fff}
+textarea.founder-textarea{min-height:100px;background:#fffef9}
+/*** auto-expand textarea on mobile ***/
+@media(max-width:768px){textarea{resize:none}}
+
+.btn-row{display:flex;gap:12px;margin:24px 0;justify-content:center}
+.btn-back{flex:1;padding:14px;background:#fff;color:#4a3828;border:1.6px solid #e8dcc8;border-radius:14px;font-size:16px;font-weight:600;cursor:pointer;max-width:160px}
+.btn-submit{flex:1;padding:14px;background:#2c2416;color:#fdf8f0;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;max-width:200px;letter-spacing:1px}
+.btn-submit:disabled{background:#c9a96e;cursor:not-allowed}
+.submit-status{text-align:center;margin:8px 0;font-size:14px;min-height:22px}
+.submit-status.error{color:#c62828}
+.submit-status.success{color:#2e7d32}
+
+.thanks-box{display:none;text-align:center;padding:40px 24px;background:#fff;border-radius:14px;margin:20px 0}
+.thanks-box.show{display:block}
+.thanks-box h2{font-size:24px;color:#1a1206;margin-bottom:12px}
+.thanks-box p{font-size:16px;color:#4a3828;margin-bottom:16px}
+.thanks-box .btn-back-dash{padding:12px 32px;background:#2c2416;color:#fdf8f0;border:none;border-radius:10px;font-size:16px;cursor:pointer}
+
+.footer{text-align:center;padding:24px;font-size:13px;color:#8c7a5c;border-top:1px solid #e8dcc8;margin-top:20px}
+@media(max-width:480px){
+  .header h1{font-size:21px}
+  .dash-wrap,.survey-wrap{padding:16px 14px 80px}
+  .q-card{padding:20px 16px}
+}
 </style>
 </head>
 <body>
-<div class="top">
-  <h1>定客群 · 创始人问卷</h1>
-  <p class="sub">基于六条决策框架——你的直觉基准线</p>
-  <span class="badge">创始人版</span>
+
+<div class="browser-notice" id="browserNotice" style="display:none">⚠️ 微信内置浏览器不支持语音功能。请点击右上角「在浏览器中打开」，用 Chrome/Safari 访问即可使用语音转文字。</div>
+<div class="header">
+<h1>定客群调研 · 创始人版</h1>
+<div class="brand">伟大印记</div>
+<p id="headerSub">基于六条决策框架的客群直觉判断</p>
 </div>
 
-<div class="container" id="surveyForm">
-
-<!-- 第一部分 -->
-<div class="section-header">第一部分：他是谁</div>
-
-<div class="q-block">
-  <span class="q-num">1</span><span class="q-title">你心目中这个品牌的「第一个人」</span>
-  <p class="q-desc">不要用年龄/收入描述。用场景、状态、困境。比如：「深夜一个人坐在车里不想上楼的人」、「刚跟团队发完火、知道不对但控制不住的人」</p>
-  <textarea placeholder="你的描述..." data-q="q1"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q1')">🎤 语音输入</button></div>
+<!-- ==================== 登录视图 ==================== -->
+<div class="view active" id="viewLogin">
+<div class="login-wrap">
+<div class="login-card">
+<h2>🧭 创始人直觉问卷</h2>
+<p class="lc-desc">以你对理想客群的第一直觉作答，不需要"客观数据"</p>
+<label>你的名字 <span style="color:#c62828">*</span></label>
+<input type="text" id="loginName" placeholder="你的名字" maxlength="50" autocomplete="name">
+<label style="margin-top:4px">手机号 / 微信号（选填）</label>
+<input type="text" id="loginContact" placeholder="方便后续回访" maxlength="60" autocomplete="tel">
+<p class="lc-hint">每次填写都是一次客群直觉的迭代沉淀，可随时查看历史版本</p>
+<button class="btn-primary" onclick="doLogin()">开始答题</button>
 </div>
-
-<div class="q-block">
-  <span class="q-num">2</span><span class="q-title">这个人与道德经的关系</span>
-  <p class="q-desc">单选最接近的</p>
-  <div class="radio-group">
-    <label><input type="radio" name="q2" value="A-读过被击中反复看" data-q="q2"><span>A. 读过、被击中过、反复看</span></label>
-    <label><input type="radio" name="q2" value="B-读过但印象不深" data-q="q2"><span>B. 读过但印象不深</span></label>
-    <label><input type="radio" name="q2" value="C-没读过但对国学感兴趣" data-q="q2"><span>C. 没读过但对「国学智慧」感兴趣</span></label>
-    <label><input type="radio" name="q2" value="D-没读过也不感兴趣" data-q="q2"><span>D. 没读过也不感兴趣</span></label>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">3</span><span class="q-title">除道德经外，他还被哪些打动</span>
-  <p class="q-desc">多选</p>
-  <div class="check-group">
-    <label><input type="checkbox" value="佛经/禅宗" data-q="q3"><span>佛经/禅宗</span></label>
-    <label><input type="checkbox" value="儒家/论语" data-q="q3"><span>儒家/论语</span></label>
-    <label><input type="checkbox" value="庄子" data-q="q3"><span>庄子</span></label>
-    <label><input type="checkbox" value="阳明心学" data-q="q3"><span>阳明心学</span></label>
-    <label><input type="checkbox" value="易经" data-q="q3"><span>易经</span></label>
-    <label><input type="checkbox" value="西方哲学" data-q="q3"><span>西方哲学</span></label>
-    <label><input type="checkbox" value="心理学/正念" data-q="q3"><span>心理学/正念</span></label>
-  </div>
-  <input type="text" id="q3_other" placeholder="其他补充..." style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #d4c9b8;border-radius:6px;font-size:14px">
-  <label style="font-size:13px;margin-top:6px;display:block"><input type="checkbox" onchange="document.getElementById('q3_other').style.display=this.checked?'block':'none'"> 有补充</label>
-</div>
-
-<div class="q-block">
-  <span class="q-num">4</span><span class="q-title">他是独修型还是共修型</span>
-  <div class="radio-group">
-    <label><input type="radio" name="q4" value="独修型" data-q="q4"><span>A. 独修型——自己看书琢磨，不太跟人讨论</span></label>
-    <label><input type="radio" name="q4" value="共修型" data-q="q4"><span>B. 共修型——加入社群、参加课程、喜欢交流</span></label>
-    <label><input type="radio" name="q4" value="混合型" data-q="q4"><span>C. 混合型——自己学为主，偶尔参加活动</span></label>
-  </div>
-</div>
-
-<!-- 第二部分 -->
-<div class="section-header">第二部分：践行掉落</div>
-
-<div class="q-block">
-  <span class="q-num">5</span><span class="q-title">「知道但做不到」有多普遍</span>
-  <p class="q-desc">你接触过的人里，大概多少比例「知道道理但生活中用不上」？</p>
-  <textarea placeholder="你的观察..." data-q="q5"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q5')">🎤 语音输入</button></div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">6</span><span class="q-title">他在什么时刻最容易「忘了」</span>
-  <p class="q-desc">描述具体场景。比如：「开会被人怼的时候」、「孩子哭闹的时候」、「深夜一个人的时候」</p>
-  <textarea placeholder="描述具体场景..." data-q="q6"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q6')">🎤 语音输入</button></div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">7</span><span class="q-title">他现在用什么方法提醒自己</span>
-  <p class="q-desc">多选</p>
-  <div class="check-group">
-    <label><input type="checkbox" value="手机屏保/壁纸" data-q="q7"><span>手机屏保/壁纸</span></label>
-    <label><input type="checkbox" value="笔记本抄写" data-q="q7"><span>笔记本抄写</span></label>
-    <label><input type="checkbox" value="贴便签" data-q="q7"><span>贴便签</span></label>
-    <label><input type="checkbox" value="戴手串/佛珠" data-q="q7"><span>戴手串/佛珠</span></label>
-    <label><input type="checkbox" value="打坐/冥想" data-q="q7"><span>打坐/冥想</span></label>
-    <label><input type="checkbox" value="听音频/播客" data-q="q7"><span>听音频/播客</span></label>
-    <label><input type="checkbox" value="什么都不做硬扛" data-q="q7"><span>什么都不做，硬扛</span></label>
-  </div>
-  <input type="text" id="q7_other" placeholder="其他补充..." style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #d4c9b8;border-radius:6px;font-size:14px">
-  <label style="font-size:13px;margin-top:6px;display:block"><input type="checkbox" onchange="document.getElementById('q7_other').style.display=this.checked?'block':'none'"> 有补充</label>
-</div>
-
-<div class="q-block">
-  <span class="q-num">8</span><span class="q-title">这些方法为什么失效</span>
-  <p class="q-desc">多选，你觉得最主要的原因</p>
-  <div class="check-group">
-    <label><input type="checkbox" value="看了就忘" data-q="q8"><span>看了就忘——视觉提醒太容易忽略</span></label>
-    <label><input type="checkbox" value="手在动心没动" data-q="q8"><span>手在动心没动——抄经/盘串变机械动作</span></label>
-    <label><input type="checkbox" value="太刻意不好意思" data-q="q8"><span>太刻意了不好意思——在别人面前尴尬</span></label>
-    <label><input type="checkbox" value="环境打断" data-q="q8"><span>环境打断——想起来时没条件做</span></label>
-    <label><input type="checkbox" value="忘了带" data-q="q8"><span>忘了带/丢了——物理物品不在身边</span></label>
-    <label><input type="checkbox" value="自己也不信" data-q="q8"><span>自己也不信——深处觉得没用</span></label>
-  </div>
-  <input type="text" id="q8_other" placeholder="其他原因..." style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #d4c9b8;border-radius:6px;font-size:14px">
-  <label style="font-size:13px;margin-top:6px;display:block"><input type="checkbox" onchange="document.getElementById('q8_other').style.display=this.checked?'block':'none'"> 有补充</label>
-</div>
-
-<!-- 第三部分 -->
-<div class="section-header">第三部分：购买动机与定价</div>
-
-<div class="q-block">
-  <span class="q-num">9</span><span class="q-title">他为什么愿意为金器买单</span>
-  <p class="q-desc">排序（1=最重要，4=最不重要）</p>
-  <div class="rank-group">
-    <div class="rank-row"><span>提醒自己——「需要能被摸到的提醒」</span><select data-q="q9" data-item="提醒自己"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-    <div class="rank-row"><span>对自己有意义——「这句话改变了我」</span><select data-q="q9" data-item="对自己有意义"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-    <div class="rank-row"><span>好看——「它本身是美的」</span><select data-q="q9" data-item="好看"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-    <div class="rank-row"><span>身份表达——「说明我是怎样的人」</span><select data-q="q9" data-item="身份表达"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">10</span><span class="q-title">他愿意花多少钱</span>
-  <div class="radio-group">
-    <label><input type="radio" name="q10" value="300-800" data-q="q10"><span>¥300–800（「试试看」的价格）</span></label>
-    <label><input type="radio" name="q10" value="800-2000" data-q="q10"><span>¥800–2000（「认真对待」的价格）</span></label>
-    <label><input type="radio" name="q10" value="2000-5000" data-q="q10"><span>¥2000–5000（「对自己有意义」的价格）</span></label>
-    <label><input type="radio" name="q10" value="5000-15000" data-q="q10"><span>¥5000–15000（「传家/重要」的价格）</span></label>
-    <label><input type="radio" name="q10" value="15000+" data-q="q10"><span>¥15000+（「收藏级」的价格）</span></label>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">11</span><span class="q-title">这个价格判断的依据是什么</span>
-  <p class="q-desc">他花类似的钱在别的地方的例子。比如：花¥2000买课不眨眼，买物品会犹豫吗？</p>
-  <textarea placeholder="你的观察..." data-q="q11"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q11')">🎤 语音输入</button></div>
-</div>
-
-<!-- 第四部分 -->
-<div class="section-header">第四部分：他在哪 + 分享给谁</div>
-
-<div class="q-block">
-  <span class="q-num">12</span><span class="q-title">他平时在哪些平台花时间</span>
-  <p class="q-desc">排序（1=最多时间）</p>
-  <div class="rank-group">
-    <div class="rank-row"><span>微信/视频号</span><select data-q="q12" data-item="微信视频号"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-    <div class="rank-row"><span>小红书</span><select data-q="q12" data-item="小红书"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-    <div class="rank-row"><span>抖音</span><select data-q="q12" data-item="抖音"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-    <div class="rank-row"><span>B站</span><select data-q="q12" data-item="B站"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-    <div class="rank-row"><span>知乎</span><select data-q="q12" data-item="知乎"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-    <div class="rank-row"><span>得到/喜马拉雅</span><select data-q="q12" data-item="得到喜马拉雅"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-    <div class="rank-row"><span>线下活动/课程</span><select data-q="q12" data-item="线下活动"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">13</span><span class="q-title">他什么时候看这些内容</span>
-  <div class="radio-group">
-    <label><input type="radio" name="q13" value="白天碎片" data-q="q13"><span>A. 白天碎片时间</span></label>
-    <label><input type="radio" name="q13" value="晚上睡前" data-q="q13"><span>B. 晚上睡前</span></label>
-    <label><input type="radio" name="q13" value="周末整块" data-q="q13"><span>C. 周末整块时间</span></label>
-    <label><input type="radio" name="q13" value="通勤路上" data-q="q13"><span>D. 通勤路上</span></label>
-    <label><input type="radio" name="q13" value="深夜22点后" data-q="q13"><span>E. 深夜（22:00后）</span></label>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">14</span><span class="q-title">如果受益了，他会分享给谁</span>
-  <p class="q-desc">排序（1=最先分享）</p>
-  <div class="rank-group">
-    <div class="rank-row"><span>伴侣/家人</span><select data-q="q14" data-item="伴侣家人"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-    <div class="rank-row"><span>面临同样困境的朋友</span><select data-q="q14" data-item="困境朋友"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-    <div class="rank-row"><span>生意伙伴/客户</span><select data-q="q14" data-item="生意伙伴"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-    <div class="rank-row"><span>不分享，被注意到才说</span><select data-q="q14" data-item="不主动分享"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">15</span><span class="q-title">他会怎么跟别人描述这件东西</span>
-  <p class="q-desc">不是品牌文案。是他自己的话。比如：「我最近戴了个东西，挺管用的……」</p>
-  <textarea placeholder="他会怎么说..." data-q="q15"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q15')">🎤 语音输入</button></div>
-</div>
-
-<!-- 第五部分 -->
-<div class="section-header">第五部分：品牌气质匹配</div>
-
-<div class="q-block">
-  <span class="q-num">16</span><span class="q-title">他会认同哪种描述</span>
-  <div class="radio-group">
-    <label><input type="radio" name="q16" value="不装不吵不硌不堵不抢" data-q="q16"><span>A. 「不装不吵不硌不堵不抢」——他需要的就是这样的</span></label>
-    <label><input type="radio" name="q16" value="低调但有分量" data-q="q16"><span>B. 「低调但有分量」——不喜欢太显眼，但不能廉价</span></label>
-    <label><input type="radio" name="q16" value="一看就知道不便宜" data-q="q16"><span>C. 「一看就知道不便宜」——需要别人看得出来</span></label>
-    <label><input type="radio" name="q16" value="好看就行" data-q="q16"><span>D. 「好看就行，气质无所谓」</span></label>
-  </div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">17</span><span class="q-title">他会在什么场合戴/用</span>
-  <p class="q-desc">多选</p>
-  <div class="check-group">
-    <label><input type="checkbox" value="日常每天戴" data-q="q17"><span>日常戴（每天都戴）</span></label>
-    <label><input type="checkbox" value="重要场合" data-q="q17"><span>重要场合（见人/开会）</span></label>
-    <label><input type="checkbox" value="独处时" data-q="q17"><span>独处时（一个人的仪式）</span></label>
-    <label><input type="checkbox" value="固定位置" data-q="q17"><span>放在固定位置（书桌/茶台）</span></label>
-  </div>
-</div>
-
-<!-- 第六部分 -->
-<div class="section-header">第六部分：你的直觉盲区</div>
-
-<div class="q-block">
-  <span class="q-num">18</span><span class="q-title">关于「谁会买这个品牌」——你有什么不确定的</span>
-  <p class="q-desc">哪些判断你觉得自己可能想错了？哪些想找数据验证？</p>
-  <textarea placeholder="你的不确定..." data-q="q18"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q18')">🎤 语音输入</button></div>
-</div>
-
-<div class="q-block">
-  <span class="q-num">19</span><span class="q-title">如果只能选一个人作为首发客群</span>
-  <p class="q-desc">不要想市场大小。你最想把第一件产品交到谁手上？</p>
-  <textarea placeholder="你的回答..." data-q="q19"></textarea>
-  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q19')">🎤 语音输入</button></div>
-</div>
-
-<!-- Submit -->
-<div class="submit-section">
-  <button class="submit-btn" onclick="submitSurvey()">📤 提交问卷</button>
-  <div class="status" id="status"></div>
 </div>
 </div>
 
-<div class="footer">伟大印记 · 定客群创始人问卷 | 你的直觉是品牌最重要的数据源</div>
+<!-- ==================== 面板视图 ==================== -->
+<div class="view" id="viewDashboard">
+<div class="dash-wrap">
+<div class="dash-user" id="dashUserCard"></div>
+<div class="dash-actions">
+<button class="btn-new" onclick="startNewSurvey()">✚ 新建调研</button>
+<button class="btn-logout" onclick="doLogout()">切换账号</button>
+</div>
+<div class="history-title">📋 历史记录</div>
+<div id="historyList"></div>
+</div>
+</div>
+
+<!-- ==================== 问卷视图 ==================== -->
+<div class="view" id="viewSurvey">
+<div class="survey-wrap" id="surveyForm">
+
+<!-- 个人简介 -->
+<div class="q-card">
+<div class="q-num">个人简介</div>
+<div class="q-title">你对自己的认知</div>
+<div class="q-guide">
+<span class="guide-icon">🗣️</span><strong>语音引导：</strong>请用一段话说说你自己——年龄、职业、过去一年的主要消费方向（教育/文化/健康/旅行/其他），你觉得自己是什么样的人，你希望成为什么样的人。
+</div>
+<div class="voice-bar" id="vb-bio" data-part="bio">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音介绍自己</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('bio')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-bio">
+<audio id="audio-bio" controls></audio>
+<span class="ap-dur" id="dur-bio"></span>
+</div>
+<textarea id="text-bio" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<!-- 第一部分：①他是谁 -->
+<div class="q-card">
+<div class="q-num">第一部分 ①他是谁 <span class="dur-badge">最长4分钟</span></div>
+<div class="q-title">你心中的理想客群画像</div>
+<div class="q-guide">
+<span class="guide-icon">👤</span><strong>语音引导：</strong>请说出你所理解的典型客群——他们是谁？多大年龄？男女比例？收入区间？社会角色是什么？（企业家/高管/自由职业/文化从业者/退休人士等）。他们的心理画像——他们在焦虑什么？在寻找什么？什么样的价值观让他们成为"我们的人"？他们的日常消费"锚"在哪里？
+</div>
+<div class="voice-bar" id="vb-part1" data-part="1">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音（最长4分钟）</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('1')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-part1">
+<audio id="audio-part1" controls></audio>
+<span class="ap-dur" id="dur-part1"></span>
+</div>
+<textarea id="text-part1" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<!-- 第二部分：②现有行为库存 -->
+<div class="q-card">
+<div class="q-num">第二部分 ②现有行为库存 <span class="dur-badge">最长5分钟</span></div>
+<div class="q-title">他们现在在做什么</div>
+<div class="q-guide">
+<span class="guide-icon">📱</span><strong>语音引导：</strong>这些人现在用什么工具/APP/公众号来学习或修行？（得到/喜马拉雅/小红书/B站/公众号/微信群…）。他们"学完之后最常做的动作"是什么——收藏？转发？记笔记？跟人讨论？还是什么都不做？你观察到现有方案的哪些不足——什么东西让他们"知道却做不到"？
+</div>
+<div class="voice-bar" id="vb-part2" data-part="2">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音（最长5分钟）</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('2')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-part2">
+<audio id="audio-part2" controls></audio>
+<span class="ap-dur" id="dur-part2"></span>
+</div>
+<textarea id="text-part2" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<!-- 第三部分：③何时最需要 -->
+<div class="q-card">
+<div class="q-num">第三部分 ③何时最需要 <span class="dur-badge">最长5分钟</span></div>
+<div class="q-title">痛点出现的时机</div>
+<div class="q-guide">
+<span class="guide-icon">⏰</span><strong>语音引导：</strong>这群人在什么时候最需要"提醒自己"？在什么场景下最容易"忘了"践行？（上班路上？深夜独处？跟人争吵后？做决策前？）。什么时候他们会主动寻找"如何把学到的用出来"的相关帮助？他们的"触发时刻"是什么？
+</div>
+<div class="voice-bar" id="vb-part3" data-part="3">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音（最长5分钟）</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('3')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-part3">
+<audio id="audio-part3" controls></audio>
+<span class="ap-dur" id="dur-part3"></span>
+</div>
+<textarea id="text-part3" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<!-- 第四部分：④自然出现在哪 -->
+<div class="q-card">
+<div class="q-num">第四部分 ④自然出现在哪 <span class="dur-badge">最长4分钟</span></div>
+<div class="q-title">场景与触达渠道</div>
+<div class="q-guide">
+<span class="guide-icon">📍</span><strong>语音引导：</strong>这些人自然出现在哪里？线上社群（什么群？什么平台？）线下活动（茶馆/书院/禅修/高端社交？）他们获取信息的自然渠道是什么？谁在影响他们的决策——朋友推荐？老师背书？社群口碑？还是自己的直觉判断？
+</div>
+<div class="voice-bar" id="vb-part4" data-part="4">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音（最长4分钟）</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('4')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-part4">
+<audio id="audio-part4" controls></audio>
+<span class="ap-dur" id="dur-part4"></span>
+</div>
+<textarea id="text-part4" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<!-- 第五部分：⑤什么价格诚实 -->
+<div class="q-card">
+<div class="q-num">第五部分 ⑤什么价格诚实 <span class="dur-badge">最长4分钟</span></div>
+<div class="q-title">定价直觉</div>
+<div class="q-guide">
+<span class="guide-icon">💰</span><strong>语音引导：</strong>以你对这群人的了解，一件觉知金器 + 一年践行陪伴，你觉得什么价格是"诚实"的？他们愿意为什么样的价值付费——是因为金器本身？还是因为践行陪伴？还是一整年的"被看见"？请具体说出价格区间和理由。
+</div>
+<div class="voice-bar" id="vb-part5" data-part="5">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音（最长4分钟）</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('5')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-part5">
+<audio id="audio-part5" controls></audio>
+<span class="ap-dur" id="dur-part5"></span>
+</div>
+<textarea id="text-part5" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<!-- 第六部分：⑥受益后分享给谁 -->
+<div class="q-card">
+<div class="q-num">第六部分 ⑥受益后分享给谁 <span class="dur-badge">最长4分钟</span></div>
+<div class="q-title">分享与传播</div>
+<div class="q-guide">
+<span class="guide-icon">🤝</span><strong>语音引导：</strong>当这群人真正受益后，他们会主动分享给谁？伴侣？孩子？父母？朋友？同事？他们分享的动机是什么？分享时他们会怎么说——"这个东西让我每天记得提醒自己"还是"我终于能把学到的用出来了"？
+</div>
+<div class="voice-bar" id="vb-part6" data-part="6">
+<span class="vb-icon">🎤</span>
+<span class="vb-text">点我录音（最长4分钟）</span>
+<span class="vb-wave"><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span><span class="vb-dot"></span></span>
+<span class="vb-status"></span>
+<span class="vb-delete" onclick="event.stopPropagation();deleteRecording('6')" title="删除录音">×</span>
+</div>
+<div class="audio-playback" id="ap-part6">
+<audio id="audio-part6" controls></audio>
+<span class="ap-dur" id="dur-part6"></span>
+</div>
+<textarea id="text-part6" placeholder="语音识别的内容会出现在这里，也可以手动输入..."></textarea>
+</div>
+
+<div class="submit-status" id="submitStatus"></div>
+<div class="btn-row">
+<button class="btn-back" onclick="backToDashboard()">← 返回</button>
+<button class="btn-submit" id="btnSubmit" onclick="submitSurvey()">✓ 提交</button>
+</div>
+<div class="thanks-box" id="thanksBox">
+<h2>提交成功 🙏</h2>
+<p>你的客群直觉已被保存，可以随时回来迭代。</p>
+<button class="btn-back-dash" onclick="backToDashboard()">返回我的面板</button>
+</div>
+</div>
+</div>
+
+<div class="footer">定客群调研 · 创始人版 · 伟大印记 · 2026</div>
 
 <script>
-function startVoice(btn, qKey) {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) { alert('您的浏览器不支持语音输入。请用 Safari 或 Chrome 打开。'); return; }
-  if (!btn._recog) {
-    btn._recog = new SpeechRecognition();
-    btn._recog.lang = 'zh-CN';
-    btn._recog.interimResults = true;
-    btn._recog.continuous = true;
-  }
-  const recog = btn._recog;
-  if (btn.classList.contains('recording')) {
-    recog.stop();
-    btn.classList.remove('recording');
-    btn.textContent = '🎤 语音输入';
-    return;
-  }
-  btn.classList.add('recording');
-  btn.textContent = '🔴 录音中...点击停止';
-  const textarea = document.querySelector('[data-q="'+qKey+'"]');
-  recog.onresult = (e) => {
-    let t = '';
-    for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript;
-    textarea.value = t;
-  };
-  recog.onerror = () => { btn.classList.remove('recording'); btn.textContent = '🎤 语音输入'; };
-  recog.onend = () => { btn.classList.remove('recording'); btn.textContent = '🎤 语音输入'; };
-  recog.start();
+// ===== Config =====
+// STT proxy (Vercel) — speech-to-text endpoint
+var STT_URL = 'https://tongxingzhe-stt-proxy.vercel.app/api/index';
+// Data proxy (Deno) — GET/POST submissions + PUT part4
+var API_URL = 'https://strong-butterfly-68.haohao2006888.deno.net/';
+var DURATIONS = { bio: 90, 1: 240, 2: 300, 3: 300, 4: 240, 5: 240, 6: 240 }; // seconds per part
+
+// ===== State (no local storage, data lives on GitHub via Deno proxy) =====
+var currentUser = null;
+var editingSubmission = null;
+
+// ===== Audio State =====
+var mediaRecorder = null;
+var audioChunks = [];
+var currentPartKey = null;
+var currentVoiceBar = null;
+var recognition = null;
+var countdownTimer = null;
+var secondsLeft = 0;
+var audioBlobs = {}; // { 'bio': blob, '1': blob, ... }
+
+// ===== PCM 音频转换（Web Audio API，全平台兼容）=====
+function convertWebmToPCM(blob) {
+  return new Promise(function(resolve, reject) {
+    try {
+      blob.arrayBuffer().then(function(arrayBuffer) {
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioCtx.decodeAudioData(arrayBuffer).then(function(audioBuffer) {
+          // Resample to 16kHz mono
+          var sampleRate = 16000;
+          var offlineCtx = new OfflineAudioContext(1, audioBuffer.duration * sampleRate, sampleRate);
+          var source = offlineCtx.createBufferSource();
+          source.buffer = audioBuffer;
+          source.connect(offlineCtx.destination);
+          source.start();
+          offlineCtx.startRendering().then(function(renderedBuffer) {
+            var floatData = renderedBuffer.getChannelData(0);
+            // Convert Float32 [-1,1] to Int16
+            var int16 = new Int16Array(floatData.length);
+            for (var i = 0; i < floatData.length; i++) {
+              var s = Math.max(-1, Math.min(1, floatData[i]));
+              int16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+            }
+            // Convert to base64
+            var bytes = new Uint8Array(int16.buffer);
+            var binary = '';
+            for (var i2 = 0; i2 < bytes.length; i2++) {
+              binary += String.fromCharCode(bytes[i2]);
+            }
+            resolve(btoa(binary));
+          }).catch(reject);
+        }).catch(reject);
+      }).catch(reject);
+    } catch(e) { reject(e); }
+  });
 }
 
-function submitSurvey() {
-  const data = { timestamp: new Date().toISOString(), version: 'founder' };
-  const seen = new Set();
-
-  // Textareas
-  document.querySelectorAll('textarea[data-q]').forEach(ta => {
-    if (ta.value.trim()) data[ta.getAttribute('data-q')] = ta.value.trim();
-    seen.add(ta.getAttribute('data-q'));
+// 调用 Deno 代理的 /stt 接口（Baidu ASR）
+function callSttProxy(pcmBase64, format, rate) {
+  return new Promise(function(resolve, reject) {
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', STT_URL, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        try {
+          var resp = JSON.parse(xhr.responseText);
+          if (resp.text !== undefined) resolve(resp.text);
+          else reject(new Error(resp.error || 'STT failed'));
+        } catch(e) { reject(e); }
+      };
+      xhr.onerror = function() { reject(new Error('Network error')); };
+      xhr.send(JSON.stringify({ audio: pcmBase64, format: format || 'pcm', rate: rate || 16000, lang: 'zh' }));
+    } catch(e) { reject(e); }
   });
-
-  // Radio
-  document.querySelectorAll('input[type=radio][data-q]:checked').forEach(r => {
-    data[r.getAttribute('data-q')] = r.value;
-    seen.add(r.getAttribute('data-q'));
-  });
-
-  // Checkboxes
-  const checkGroups = {};
-  document.querySelectorAll('input[type=checkbox][data-q]:checked').forEach(cb => {
-    const q = cb.getAttribute('data-q');
-    if (!checkGroups[q]) checkGroups[q] = [];
-    checkGroups[q].push(cb.value);
-    seen.add(q);
-  });
-  Object.keys(checkGroups).forEach(q => { data[q] = checkGroups[q].join(', '); });
-
-  // Rank selects
-  const rankGroups = {};
-  document.querySelectorAll('select[data-q]').forEach(sel => {
-    if (!sel.value) return;
-    const q = sel.getAttribute('data-q');
-    if (!rankGroups[q]) rankGroups[q] = {};
-    rankGroups[q][sel.getAttribute('data-item')] = sel.value;
-    seen.add(q);
-  });
-  Object.keys(rankGroups).forEach(q => { data[q] = JSON.stringify(rankGroups[q]); });
-
-  // Other inputs
-  document.querySelectorAll('input[type=text][id$="_other"]').forEach(inp => {
-    if (inp.value.trim()) data[inp.id] = inp.value.trim();
-  });
-
-  const json = JSON.stringify(data, null, 2);
-  document.getElementById('status').className = 'status success';
-  document.getElementById('status').textContent = '✅ 提交成功！以下是数据：\n\n' + json;
-  document.getElementById('status').style.display = 'block';
-  console.log('Founder Survey:', data);
-  document.getElementById('status').scrollIntoView({behavior:'smooth'});
 }
+
+// ===== View Switching =====
+function showView(viewId) {
+document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
+document.getElementById(viewId).classList.add('active');
+}
+
+// ===== Login =====
+async function doLogin() {
+var name = document.getElementById('loginName').value.trim();
+if (!name) { alert('请输入你的名字'); return; }
+var contact = document.getElementById('loginContact').value.trim();
+currentUser = { name: name, contact: contact };
+
+// Detect WeChat
+if (/MicroMessenger/i.test(navigator.userAgent)) {
+document.getElementById('browserNotice').style.display = 'block';
+}
+
+showDashboard();
+}
+
+async function showDashboard() {
+showView('viewDashboard');
+document.getElementById('headerSub').textContent = currentUser.name + ' 的调研面板';
+
+// Clear immediately to prevent flash of old user data
+window._dashboardSubs = null;
+document.getElementById('dashUserCard').innerHTML = '';
+document.getElementById('historyList').innerHTML = '<div class="empty-history">加载中...</div>';
+
+// Load submissions — try Deno proxy first, fallback to GitHub raw
+var subs = [];
+var all = null;
+try {
+var resp = await fetch(API_URL);
+if (resp.ok) all = await resp.json();
+} catch(e) { console.warn('Proxy fetch failed, trying GitHub fallback:', e.message); }
+
+// Fallback: read directly from GitHub raw (works even when proxy is down)
+if (!all || (Array.isArray(all) && all.length === 0)) {
+try {
+var rawResp = await fetch(
+'https://raw.githubusercontent.com/haohao2006888/tongxingzhe-survey/main/data/submissions.json',
+{ headers: { 'Accept': 'application/json' } }
+);
+if (rawResp.ok) {
+all = await rawResp.json();
+// Strip audio base64 fields (they bloat payload and aren't needed for dashboard)
+all = all.map(function(s) {
+var clean = {};
+Object.keys(s).forEach(function(k) {
+if (!k.endsWith('_audio') && k !== 'ua') clean[k] = s[k];
+});
+return clean;
+});
+}
+} catch(e2) { console.error('GitHub fallback also failed:', e2.message); }
+}
+
+if (all) {
+subs = all.filter(function(s) { return s.userName === currentUser.name; });
+subs.sort(function(a, b) { return new Date(b.time) - new Date(a.time); });
+}
+
+// User card
+var card = document.getElementById('dashUserCard');
+card.innerHTML =
+'<div class="du-name">' + escapeHtml(currentUser.name) + '</div>' +
+'<div class="du-meta">📋 共 ' + subs.length + ' 篇记录' +
+(currentUser.contact ? ' · ' + escapeHtml(currentUser.contact) : '') +
+'</div>';
+
+// History
+var list = document.getElementById('historyList');
+if (subs.length === 0) {
+list.innerHTML = '<div class="empty-history">还没有记录，点击「新建调研」开始吧</div>';
+} else {
+list.innerHTML = subs.map(function(s, i) {
+var d = new Date(s.time);
+var dateStr = d.getFullYear() + '/' + pad(d.getMonth()+1) + '/' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+var preview = (s.part1_text || s.part2_text || s.part3_text || s.part4_text || s.part5_text || s.part6_text || '').substring(0, 60);
+var parts = [];
+if (s.part1_text) parts.push('客群');
+if (s.part2_text) parts.push('行为');
+if (s.part3_text) parts.push('时机');
+if (s.part4_text) parts.push('场景');
+if (s.part5_text) parts.push('定价');
+if (s.part6_text) parts.push('分享');
+return '<div class="history-item" onclick="viewSubmission(' + i + ')">' +
+'<div class="hi-date">' + dateStr + '</div>' +
+'<div class="hi-preview">' + escapeHtml(preview) + (preview.length >= 60 ? '...' : '') + '</div>' +
+'<div class="hi-parts">' + parts.join(' · ') + '</div>' +
+'</div>';
+}).join('');
+}
+// Store subs for viewSubmission reference
+window._dashboardSubs = subs;
+}
+
+function viewSubmission(idx) {
+var sub = window._dashboardSubs && window._dashboardSubs[idx];
+if (!sub) return;
+editingSubmission = sub;
+showView('viewSurvey');
+resetSurveyForm();
+fillSurveyForm(sub);
+document.getElementById('submitStatus').textContent = '📖 历史版本（只读）';
+document.getElementById('submitStatus').className = 'submit-status';
+document.getElementById('thanksBox').classList.remove('show');
+document.getElementById('surveyForm').style.display = '';
+var btn = document.getElementById('btnSubmit');
+btn.style.display = 'none';
+document.querySelector('.btn-back').textContent = '← 返回面板';
+}
+
+function fillSurveyForm(sub) {
+document.getElementById('text-bio').value = sub.bio || '';
+for (var i = 1; i <= 6; i++) {
+document.getElementById('text-part' + i).value = sub['part' + i + '_text'] || '';
+}
+}
+
+function startNewSurvey() {
+editingSubmission = null;
+showView('viewSurvey');
+resetSurveyForm();
+document.getElementById('submitStatus').textContent = '';
+document.getElementById('submitStatus').className = 'submit-status';
+document.getElementById('thanksBox').classList.remove('show');
+document.getElementById('surveyForm').style.display = '';
+document.getElementById('btnSubmit').textContent = '✓ 提交';
+document.getElementById('btnSubmit').style.display = '';
+document.querySelector('.btn-back').textContent = '← 返回';
+
+// Keep-warm: pre-ping STT proxy to eliminate cold start
+var keepWarm = new XMLHttpRequest();
+keepWarm.open('GET', STT_URL, true);
+keepWarm.send();
+}
+
+function backToDashboard() {
+stopAllRecording();
+editingSubmission = null;
+showDashboard();
+}
+
+function doLogout() {
+stopAllRecording();
+currentUser = null;
+editingSubmission = null;
+window._dashboardSubs = null;
+audioBlobs = {};
+resetSurveyForm();
+// Clear dashboard DOM to prevent cross-account data leak
+document.getElementById('dashUserCard').innerHTML = '';
+document.getElementById('historyList').innerHTML = '';
+document.getElementById('loginName').value = '';
+document.getElementById('loginContact').value = '';
+document.getElementById('browserNotice').style.display = 'none';
+document.getElementById('headerSub').textContent = '请用语音说出你的真实想法';
+showView('viewLogin');
+}
+
+function resetSurveyForm() {
+// Reset textareas
+var taBio = document.getElementById('text-bio'); if (taBio) taBio.value = '';
+['1','2','3','4','5','6'].forEach(function(p) {
+var ta = document.getElementById('text-part' + p);
+if (ta) ta.value = '';
+});
+audioBlobs = {};
+// Reset voice bars and audio playback
+var allBars = ['vb-bio', 'vb-part1', 'vb-part2', 'vb-part3', 'vb-part4', 'vb-part5', 'vb-part6'];
+allBars.forEach(function(id) {
+var vb = document.getElementById(id);
+if (!vb) return;
+vb.classList.remove('recording', 'has-audio');
+// Clean up PCM capture if leaked
+if (vb._pcmCapture) {
+try { vb._pcmCapture.node.disconnect(); } catch(_) {}
+try { vb._pcmCapture.source.disconnect(); } catch(_) {}
+try { vb._pcmCapture.ctx.close(); } catch(_) {}
+vb._pcmCapture = null;
+}
+if (id === 'vb-bio') {
+vb.querySelector('.vb-icon').textContent = '🎤';
+vb.querySelector('.vb-text').textContent = '点我录音介绍自己';
+} else {
+var p = id.replace('vb-part', '');
+vb.querySelector('.vb-icon').textContent = '🎤';
+var labels = {1:'（最长4分钟）',2:'（最长5分钟）',3:'（最长5分钟）',4:'（最长4分钟）',5:'（最长4分钟）',6:'（最长4分钟）'};
+vb.querySelector('.vb-text').textContent = '点我录音' + (labels[p] || '');
+}
+vb.querySelector('.vb-status').textContent = '';
+});
+// Reset audio playback
+var bioAp = document.getElementById('ap-bio'); if (bioAp) bioAp.classList.remove('show');
+['1','2','3','4','5','6'].forEach(function(p) {
+var ap = document.getElementById('ap-part' + p);
+if (ap) ap.classList.remove('show');
+});
+// Reset submit button
+var b = document.getElementById('btnSubmit');
+b.style.display = '';
+b.textContent = '✓ 提交';
+b.disabled = false;
+isSubmitting = false;
+}
+
+function stopAllRecording() {
+if (currentVoiceBar && currentPartKey) {
+stopRecording(currentVoiceBar, currentPartKey);
+}
+// Clean up any leaked PCM capture state
+['vb-bio','vb-part1','vb-part2','vb-part3','vb-part4','vb-part5','vb-part6'].forEach(function(id) {
+var bar = document.getElementById(id);
+if (bar && bar._pcmCapture) {
+try { bar._pcmCapture.node.disconnect(); } catch(_) {}
+try { bar._pcmCapture.source.disconnect(); } catch(_) {}
+try { bar._pcmCapture.ctx.close(); } catch(_) {}
+bar._pcmCapture = null;
+}
+});
+}
+
+// ===== Auto-expand textareas on mobile =====
+document.querySelectorAll('textarea').forEach(function(ta) {
+  ta.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 300) + 'px';
+  });
+});
+
+// ===== Recording =====
+document.querySelectorAll('.voice-bar').forEach(function(bar) {
+bar.addEventListener('click', function() {
+var part = bar.getAttribute('data-part');
+if (!part) return;
+if (bar.classList.contains('recording')) {
+stopRecording(bar, part);
+} else {
+startRecording(bar, part);
+}
+});
+});
+
+function startRecording(bar, part) {
+if (currentVoiceBar && currentVoiceBar !== bar) {
+stopRecording(currentVoiceBar, currentPartKey);
+}
+if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+var isAndroid = /Android/i.test(navigator.userAgent);
+alert(isAndroid ? '您的浏览器不支持录音。请用 Chrome 浏览器打开此页面。' : '您的浏览器不支持录音。请用 Safari 或 Chrome 打开。');
+return;
+}
+navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
+audioChunks = [];
+
+// ── 实时 PCM 采集：录音期间同步抓取原始音频，停止后零延迟发送 STT ──
+var pcmCtx = new (window.AudioContext || window.webkitAudioContext)({sampleRate: 16000});
+var pcmSource = pcmCtx.createMediaStreamSource(stream);
+var pcmNode = pcmCtx.createScriptProcessor(4096, 1, 1);
+var pcmChunks = [];  // accumulated Int16Array chunks
+
+pcmNode.onaudioprocess = function(e) {
+  var input = e.inputBuffer.getChannelData(0);
+  var i16 = new Int16Array(input.length);
+  for (var i = 0; i < input.length; i++) {
+    var s = Math.max(-1, Math.min(1, input[i]));
+    i16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+  pcmChunks.push(i16);
+};
+
+pcmSource.connect(pcmNode);
+pcmNode.connect(pcmCtx.destination);
+
+// Store capture handles on bar for cleanup
+bar._pcmCapture = { ctx: pcmCtx, source: pcmSource, node: pcmNode, chunks: pcmChunks };
+
+// ── MediaRecorder (playback blob) ──
+var mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : (MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : (MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : ''));
+var opts = mimeType ? { mimeType: mimeType } : {};
+mediaRecorder = new MediaRecorder(stream, opts);
+
+mediaRecorder.ondataavailable = function(e) { if (e.data.size > 0) audioChunks.push(e.data); };
+mediaRecorder.onstop = function() {
+stream.getTracks().forEach(function(t) { t.stop(); });
+var blob = new Blob(audioChunks, { type: mimeType || 'audio/webm' });
+audioBlobs[part] = blob;
+showAudioPlayback(part, blob);
+
+// Clean up PCM capture
+var cap = bar._pcmCapture;
+if (cap) {
+  try { cap.node.disconnect(); } catch(_) {}
+  try { cap.source.disconnect(); } catch(_) {}
+  try { cap.ctx.close(); } catch(_) {}
+}
+
+// Update voice bar: mark as "has audio" for delete button visibility
+bar.classList.add('has-audio');
+bar.querySelector('.vb-status').textContent = '✓ 已录音';
+
+// ── Proxy STT: use pre-captured PCM (zero conversion delay) ──
+var capturedPart = part;
+var textareaId = (capturedPart === 'bio') ? 'text-bio' : 'text-part' + capturedPart;
+var textarea = document.getElementById(textareaId);
+var preRecordText = textarea ? (textarea.getAttribute('data-pre-record') || '') : '';
+if (textarea) textarea.placeholder = '🔄 正在转文字...';
+
+var sttStartTime = Date.now();
+var sttTimer = setInterval(function() {
+  if (textarea && textarea.placeholder.indexOf('处理中') === -1 && Date.now() - sttStartTime > 2000) {
+    textarea.placeholder = '🔄 处理中（' + Math.floor((Date.now() - sttStartTime) / 1000) + '秒）...';
+  }
+}, 1000);
+
+// Build PCM base64 from captured chunks
+var pcmPromise;
+if (cap && cap.chunks.length > 0) {
+  pcmPromise = Promise.resolve(function() {
+    var total = 0;
+    cap.chunks.forEach(function(c) { total += c.length; });
+    var combined = new Int16Array(total);
+    var off = 0;
+    cap.chunks.forEach(function(c) { combined.set(c, off); off += c.length; });
+    var bytes = new Uint8Array(combined.buffer);
+    var bin = '';
+    for (var b = 0; b < bytes.length; b++) bin += String.fromCharCode(bytes[b]);
+    return btoa(bin);
+  }());
+} else {
+  // Fallback: no PCM captured, use webm→PCM conversion
+  pcmPromise = convertWebmToPCM(blob);
+}
+
+pcmPromise.then(function(pcmBase64) {
+  return callSttProxy(pcmBase64, 'pcm', 16000);
+}).then(function(text) {
+if (text && textarea) {
+if (preRecordText) {
+textarea.value = preRecordText + (preRecordText ? '\n' : '') + text;
+} else {
+textarea.value = text;
+}
+textarea.placeholder = '';
+textarea.setAttribute('data-speech-active', '1');
+}
+}).catch(function(err) {
+console.warn('STT proxy failed:', err);
+if (textarea) {
+var hasText = textarea.value && textarea.value !== preRecordText;
+if (!hasText) {
+textarea.placeholder = '语音转文字失败，请手动输入或重新录音。';
+} else {
+textarea.placeholder = '';
+}
+}
+}).finally(function() {
+  clearInterval(sttTimer);
+});
+};
+
+mediaRecorder.start();
+currentPartKey = part;
+currentVoiceBar = bar;
+
+// Save pre-recording text so STT can merge properly
+var textareaId = (part === 'bio') ? 'text-bio' : 'text-part' + part;
+var textarea = document.getElementById(textareaId);
+if (textarea) textarea.setAttribute('data-pre-record', textarea.value || '');
+
+startSpeechRecognition(bar, part);
+
+bar.classList.add('recording');
+bar.querySelector('.vb-icon').textContent = '🔴';
+bar.querySelector('.vb-text').textContent = '正在录音... 点我停止';
+
+var maxDur = DURATIONS[part] || 90;
+secondsLeft = maxDur;
+bar.querySelector('.vb-status').textContent = formatTime(secondsLeft);
+countdownTimer = setInterval(function() {
+secondsLeft--;
+if (secondsLeft <= 0) {
+bar.querySelector('.vb-status').textContent = '⏰ 时间到';
+stopRecording(bar, part);
+} else if (secondsLeft <= 10) {
+bar.querySelector('.vb-status').textContent = '⚠ ' + formatTime(secondsLeft);
+} else {
+bar.querySelector('.vb-status').textContent = formatTime(secondsLeft);
+}
+}, 1000);
+
+var ap = document.getElementById('ap-' + partName(part));
+if (ap) ap.classList.remove('show');
+}).catch(function(e) {
+var isAndroid = /Android/i.test(navigator.userAgent);
+if (isAndroid) {
+alert('无法访问麦克风。请在手机设置→应用→Chrome→权限中开启麦克风。');
+} else {
+alert('无法访问麦克风，请检查权限设置。');
+}
+});
+}
+
+function stopRecording(bar, part) {
+if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+if (mediaRecorder && mediaRecorder.state === 'recording') { mediaRecorder.stop(); }
+mediaRecorder = null;
+stopSpeechRecognition();
+
+if (bar) {
+bar.classList.remove('recording');
+bar.querySelector('.vb-icon').textContent = '🎤';
+var labels2 = {bio:'点我重新录音',1:'点我重新录音（最长4分钟）',2:'点我重新录音（最长5分钟）',3:'点我重新录音（最长5分钟）',4:'点我重新录音（最长4分钟）',5:'点我重新录音（最长4分钟）',6:'点我重新录音（最长4分钟）'};
+var label = labels2[part] || '点我重新录音';
+bar.querySelector('.vb-text').textContent = label;
+bar.querySelector('.vb-status').textContent = '';
+if (audioBlobs[part]) {
+bar.classList.add('has-audio');
+bar.querySelector('.vb-status').textContent = '✓ 已录音';
+}
+}
+currentPartKey = null;
+currentVoiceBar = null;
+}
+
+function startSpeechRecognition(bar, part) {
+var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!SR) return;
+
+// Stop any already-running recognition (avoids overlapping sessions)
+if (recognition) { try { recognition.stop(); } catch(e) {} recognition = null; }
+
+recognition = new SR();
+recognition.lang = 'zh-CN';
+recognition.interimResults = true;
+recognition.continuous = true;
+var textareaId = (part === 'bio') ? 'text-bio' : 'text-part' + part;
+var textarea = document.getElementById(textareaId);
+
+// userText = whatever was in the box BEFORE this recording session
+// speechFinal = all finalized speech recognized DURING this session
+var userText = textarea ? textarea.value : '';
+var speechFinal = '';
+
+textarea.setAttribute('data-speech-active', '1');
+
+recognition.onresult = function(e) {
+var newFinal = '';
+var interim = '';
+
+// Only process new results (e.resultIndex onwards)
+for (var i = e.resultIndex; i < e.results.length; i++) {
+var r = e.results[i];
+if (r.isFinal) {
+newFinal += r[0].transcript;
+} else {
+interim += r[0].transcript;
+}
+}
+
+if (newFinal) speechFinal += newFinal;
+
+if (textarea) {
+textarea.value = userText + speechFinal + interim;
+textarea.scrollTop = textarea.scrollHeight;
+}
+};
+
+recognition.onend = function() {
+// Keep text as-is. If browser auto-restarts (continuous=true),
+// speechFinal still holds accumulated text and userText stays.
+// The textarea already contains: userText + speechFinal (no interim)
+if (textarea) textarea.setAttribute('data-speech-active', '0');
+};
+
+recognition.onerror = function(e) {
+console.warn('SpeechRecognition error:', e.error);
+if (textarea) textarea.setAttribute('data-speech-active', '0');
+// On network error (Android China / no VPN), just wait for STT proxy
+if (e.error === 'network' || e.error === 'service-not-allowed') {
+textarea.placeholder = '🔄 正在转文字...';
+} else if (e.error === 'not-allowed') {
+textarea.placeholder = '⚠️ 请授予麦克风权限后重试。';
+}
+// no-speech and aborted are normal — STT proxy will handle
+};
+
+recognition.start();
+}
+
+function stopSpeechRecognition() {
+if (recognition) { try { recognition.stop(); } catch(e) {} recognition = null; }
+}
+
+function showAudioPlayback(part, blob) {
+var ap = document.getElementById('ap-' + partName(part));
+var audio = document.getElementById('audio-' + partName(part));
+var durEl = document.getElementById('dur-' + partName(part));
+if (!ap || !audio) return;
+var url = URL.createObjectURL(blob);
+if (audio.dataset.blobUrl) URL.revokeObjectURL(audio.dataset.blobUrl);
+audio.src = url;
+audio.dataset.blobUrl = url;
+durEl.textContent = '...';
+audio.onloadedmetadata = function() {
+if (!isFinite(audio.duration) || audio.duration <= 0) {
+// Use recording seconds as fallback
+var dur = DURATIONS[part] ? DURATIONS[part] - (secondsLeft || 0) : 0;
+if (dur > 0) {
+var mins = Math.floor(dur / 60);
+var secs = Math.floor(dur % 60);
+durEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+} else {
+durEl.textContent = '-:--';
+}
+return;
+}
+var mins = Math.floor(audio.duration / 60);
+var secs = Math.floor(audio.duration % 60);
+durEl.textContent = mins + ':' + (secs < 10 ? '0' : '') + secs;
+};
+ap.classList.add('show');
+}
+
+function deleteRecording(part) {
+var bar = document.getElementById('vb-' + partName(part));
+var ap = document.getElementById('ap-' + partName(part));
+
+// If this part is currently recording, stop everything first
+if (currentPartKey === part && bar && bar.classList.contains('recording')) {
+if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
+if (mediaRecorder && mediaRecorder.state === 'recording') {
+// Get stream ref before replacing onstop (need to release tracks)
+var activeStream = mediaRecorder.stream;
+// Prevent onstop from writing to audioBlobs — we're deleting
+mediaRecorder.onstop = function() {
+if (activeStream) activeStream.getTracks().forEach(function(t) { t.stop(); });
+};
+try { mediaRecorder.stop(); } catch(e) {}
+}
+mediaRecorder = null;
+stopSpeechRecognition();
+currentPartKey = null;
+currentVoiceBar = null;
+secondsLeft = 0;
+}
+
+// Remove audio blob
+delete audioBlobs[part];
+
+// Reset voice bar
+if (bar) {
+bar.classList.remove('has-audio', 'recording');
+bar.querySelector('.vb-icon').textContent = '🎤';
+var delLabels = {bio:'点我录音介绍自己',1:'点我录音（最长4分钟）',2:'点我录音（最长5分钟）',3:'点我录音（最长5分钟）',4:'点我录音（最长4分钟）',5:'点我录音（最长4分钟）',6:'点我录音（最长4分钟）'};
+bar.querySelector('.vb-text').textContent = delLabels[part] || '点我录音';
+bar.querySelector('.vb-status').textContent = '';
+// Clean up PCM capture
+if (bar._pcmCapture) {
+try { bar._pcmCapture.node.disconnect(); } catch(_) {}
+try { bar._pcmCapture.source.disconnect(); } catch(_) {}
+try { bar._pcmCapture.ctx.close(); } catch(_) {}
+bar._pcmCapture = null;
+}
+}
+
+// Hide audio playback
+if (ap) ap.classList.remove('show');
+var audio = document.getElementById('audio-' + partName(part));
+if (audio) { audio.src = ''; audio.removeAttribute('data-blob-url'); }
+
+// Clear textarea only in new-survey mode (text came from recording)
+// In edit mode, text is saved data from server — keep it
+if (!editingSubmission) {
+var textareaId = (part === 'bio') ? 'text-bio' : 'text-part' + part;
+var textarea = document.getElementById(textareaId);
+if (textarea) {
+textarea.value = '';
+textarea.removeAttribute('data-speech-active');
+}
+}
+}
+
+function partName(part) {
+return part === 'bio' ? 'bio' : 'part' + part;
+}
+
+function formatTime(sec) {
+var m = Math.floor(sec / 60);
+var s = sec % 60;
+return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function blobToBase64(blob) {
+return new Promise(function(resolve, reject) {
+var reader = new FileReader();
+reader.onloadend = function() { resolve(reader.result); };
+reader.onerror = reject;
+reader.readAsDataURL(blob);
+});
+}
+
+// ===== Submit =====
+var isSubmitting = false;
+
+function setStatus(msg, type) {
+var el = document.getElementById('submitStatus');
+el.textContent = msg;
+el.className = 'submit-status ' + (type || '');
+}
+
+async function submitSurvey() {
+if (isSubmitting) return;
+if (!currentUser) { setStatus('请先登录', 'error'); return; }
+
+// New submission validation
+var bio = document.getElementById('text-bio').value.trim();
+var hasContent = false;
+for (var i = 1; i <= 6; i++) {
+if (document.getElementById('text-part' + i).value.trim()) hasContent = true;
+if (audioBlobs[i]) hasContent = true;
+}
+if (!bio && !hasContent) { setStatus('至少填写个人简介或完成一个部分的录音', 'error'); return; }
+
+isSubmitting = true;
+var btn = document.getElementById('btnSubmit');
+btn.textContent = '提交中...';
+btn.disabled = true;
+setStatus('正在处理...', '');
+
+try {
+var submission = {
+surveyType: 'dingkequn-founder',
+userName: currentUser.name,
+contact: currentUser.contact || '',
+bio: bio,
+time: new Date().toISOString(),
+ua: navigator.userAgent
+};
+
+// Text
+for (var i = 1; i <= 6; i++) {
+submission['part' + i + '_text'] = document.getElementById('text-part' + i).value.trim();
+}
+
+// Audio recording: used for speech-to-text only.
+// Audio base64 is NOT sent to keep submissions fast (2.3MB→5KB).
+
+// Submit to cloud
+setStatus('提交到云端...', '');
+await submitToCloud(submission, 0, btn);
+
+} catch (err) {
+console.error(err);
+setStatus('提交失败，请重试', 'error');
+btn.textContent = '重新提交';
+btn.disabled = false;
+isSubmitting = false;
+}
+}
+
+function submitToCloud(payload, retryCount, btn) {
+return new Promise(function(resolve, reject) {
+var controller = new AbortController();
+var fetchTimeout = setTimeout(function() { controller.abort(); }, 60000);
+
+fetch(API_URL, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload),
+signal: controller.signal
+}).then(function(r) {
+clearTimeout(fetchTimeout);
+if (!r.ok) throw new Error('HTTP ' + r.status);
+return r.json();
+}).then(function(result) {
+if (result.success) {
+document.getElementById('surveyForm').style.display = 'none';
+document.getElementById('thanksBox').classList.add('show');
+document.getElementById('submitStatus').textContent = '';
+isSubmitting = false;
+resolve();
+} else if (result.error && result.error.indexOf('sha') >= 0 && retryCount < 3) {
+setStatus('云端冲突自动重试... (' + (retryCount+1) + '/3)', '');
+setTimeout(function() { submitToCloud(payload, retryCount+1, btn).then(resolve).catch(reject); }, 800);
+} else {
+throw new Error(result.error || 'Unknown');
+}
+}).catch(function(err) {
+clearTimeout(fetchTimeout);
+console.error('Submit error:', err);
+if (err.name === 'AbortError' && retryCount < 3) {
+setStatus('云端超时，第' + (retryCount+1) + '次重试...', 'error');
+setTimeout(function() { submitToCloud(payload, retryCount+1, btn).then(resolve).catch(reject); }, 2000);
+} else if (retryCount < 3) {
+setStatus('网络重试... (' + (retryCount+1) + '/3)', 'error');
+setTimeout(function() { submitToCloud(payload, retryCount+1, btn).then(resolve).catch(reject); }, 1500);
+} else {
+btn.textContent = '重新提交';
+btn.disabled = false;
+isSubmitting = false;
+reject(err);
+}
+});
+});
+}
+
+// ===== Helpers =====
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+function escapeHtml(s) {
+var d = document.createElement('div');
+d.textContent = s;
+return d.innerHTML;
+}
+
+</script>
+</body>
+</html>
+</body>
+</html>
 </script>
 </body>
 </html>
