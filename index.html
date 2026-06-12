@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>定客群 · 创始人问卷</title>
+<style>
+:root{--bg:#f5f0eb;--card:#fff;--text:#2c2416;--muted:#8b7355;--accent:#5b4a3a;--input-bg:#faf7f3;--gold:#b8860b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Noto Serif SC",serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.top{background:linear-gradient(135deg,var(--accent),#3d2e1f);color:#fff;text-align:center;padding:36px 20px 28px}
+.top h1{font-size:22px;font-weight:600;margin-bottom:4px}
+.top .sub{font-size:13px;opacity:.75;margin-top:4px}
+.top .badge{display:inline-block;background:var(--gold);color:#fff;font-size:11px;padding:3px 10px;border-radius:10px;margin-top:8px;letter-spacing:1px}
+.section-header{max-width:640px;margin:28px auto 12px;padding:0 20px;font-size:15px;font-weight:700;color:var(--accent);border-left:3px solid var(--gold);padding-left:12px}
+.container{max-width:640px;margin:0 auto;padding:0 20px 60px}
+.q-block{background:var(--card);border-radius:10px;padding:20px;margin-bottom:14px;border:1px solid #e8e0d5;transition:border-color .2s}
+.q-block:hover{border-color:#d4c9b8}
+.q-num{display:inline-block;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:12px;font-weight:600;margin-right:8px;vertical-align:middle}
+.q-title{font-size:15px;font-weight:600;margin-bottom:6px;display:inline}
+.q-desc{font-size:13px;color:var(--muted);margin-bottom:12px;margin-top:4px}
+textarea{width:100%;min-height:80px;border:1px solid #d4c9b8;border-radius:8px;padding:12px;font-size:14px;resize:vertical;background:var(--input-bg);font-family:inherit;line-height:1.6}
+textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,74,58,.1)}
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-group label{display:flex;align-items:flex-start;gap:8px;padding:10px 14px;border:1px solid #d4c9b8;border-radius:8px;cursor:pointer;font-size:14px;background:var(--input-bg);transition:all .2s}
+.radio-group label:hover{background:#e8e0d5}
+.radio-group input:checked~span{font-weight:600;color:var(--accent)}
+.radio-group label:has(input:checked){border-color:var(--accent);background:#f0ebe0}
+.check-group{display:flex;flex-wrap:wrap;gap:8px}
+.check-group label{display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid #d4c9b8;border-radius:20px;cursor:pointer;font-size:13px;background:var(--input-bg);transition:all .2s}
+.check-group label:hover{background:#e8e0d5}
+.check-group label:has(input:checked){border-color:var(--accent);background:#f0ebe0}
+.rank-group{display:flex;flex-direction:column;gap:10px}
+.rank-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--input-bg);border-radius:8px;border:1px solid #e8e0d5}
+.rank-row span{flex:1;font-size:14px}
+.rank-row select{padding:4px 8px;border:1px solid #d4c9b8;border-radius:6px;font-size:13px;background:#fff}
+.voice-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:#e8e0d5;border:none;border-radius:14px;cursor:pointer;font-size:12px;color:var(--accent);transition:all .2s}
+.voice-btn:hover{background:#d4c9b8}
+.voice-btn.recording{background:#c0392b;color:#fff;animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.submit-section{text-align:center;margin-top:28px}
+.submit-btn{padding:14px 48px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:all .2s}
+.submit-btn:hover{background:#3d2e1f}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.status{text-align:center;padding:14px;margin-top:14px;font-size:14px;border-radius:8px;display:none;white-space:pre-wrap;font-family:monospace;text-align:left;max-width:640px;margin-left:auto;margin-right:auto}
+.status.success{background:#e8f5e9;color:#2e7d32;display:block}
+.status.error{background:#fce4ec;color:#c62828;display:block}
+.footer{text-align:center;padding:20px;color:var(--muted);font-size:12px}
+@media(max-width:480px){.top h1{font-size:18px}.container{padding:0 12px 60px}.q-block{padding:14px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>定客群 · 创始人问卷</h1>
+  <p class="sub">基于六条决策框架——你的直觉基准线</p>
+  <span class="badge">创始人版</span>
+</div>
+
+<div class="container" id="surveyForm">
+
+<!-- 第一部分 -->
+<div class="section-header">第一部分：他是谁</div>
+
+<div class="q-block">
+  <span class="q-num">1</span><span class="q-title">你心目中这个品牌的「第一个人」</span>
+  <p class="q-desc">不要用年龄/收入描述。用场景、状态、困境。比如：「深夜一个人坐在车里不想上楼的人」、「刚跟团队发完火、知道不对但控制不住的人」</p>
+  <textarea placeholder="你的描述..." data-q="q1"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q1')">🎤 语音输入</button></div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">2</span><span class="q-title">这个人与道德经的关系</span>
+  <p class="q-desc">单选最接近的</p>
+  <div class="radio-group">
+    <label><input type="radio" name="q2" value="A-读过被击中反复看" data-q="q2"><span>A. 读过、被击中过、反复看</span></label>
+    <label><input type="radio" name="q2" value="B-读过但印象不深" data-q="q2"><span>B. 读过但印象不深</span></label>
+    <label><input type="radio" name="q2" value="C-没读过但对国学感兴趣" data-q="q2"><span>C. 没读过但对「国学智慧」感兴趣</span></label>
+    <label><input type="radio" name="q2" value="D-没读过也不感兴趣" data-q="q2"><span>D. 没读过也不感兴趣</span></label>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">3</span><span class="q-title">除道德经外，他还被哪些打动</span>
+  <p class="q-desc">多选</p>
+  <div class="check-group">
+    <label><input type="checkbox" value="佛经/禅宗" data-q="q3"><span>佛经/禅宗</span></label>
+    <label><input type="checkbox" value="儒家/论语" data-q="q3"><span>儒家/论语</span></label>
+    <label><input type="checkbox" value="庄子" data-q="q3"><span>庄子</span></label>
+    <label><input type="checkbox" value="阳明心学" data-q="q3"><span>阳明心学</span></label>
+    <label><input type="checkbox" value="易经" data-q="q3"><span>易经</span></label>
+    <label><input type="checkbox" value="西方哲学" data-q="q3"><span>西方哲学</span></label>
+    <label><input type="checkbox" value="心理学/正念" data-q="q3"><span>心理学/正念</span></label>
+  </div>
+  <input type="text" id="q3_other" placeholder="其他补充..." style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #d4c9b8;border-radius:6px;font-size:14px">
+  <label style="font-size:13px;margin-top:6px;display:block"><input type="checkbox" onchange="document.getElementById('q3_other').style.display=this.checked?'block':'none'"> 有补充</label>
+</div>
+
+<div class="q-block">
+  <span class="q-num">4</span><span class="q-title">他是独修型还是共修型</span>
+  <div class="radio-group">
+    <label><input type="radio" name="q4" value="独修型" data-q="q4"><span>A. 独修型——自己看书琢磨，不太跟人讨论</span></label>
+    <label><input type="radio" name="q4" value="共修型" data-q="q4"><span>B. 共修型——加入社群、参加课程、喜欢交流</span></label>
+    <label><input type="radio" name="q4" value="混合型" data-q="q4"><span>C. 混合型——自己学为主，偶尔参加活动</span></label>
+  </div>
+</div>
+
+<!-- 第二部分 -->
+<div class="section-header">第二部分：践行掉落</div>
+
+<div class="q-block">
+  <span class="q-num">5</span><span class="q-title">「知道但做不到」有多普遍</span>
+  <p class="q-desc">你接触过的人里，大概多少比例「知道道理但生活中用不上」？</p>
+  <textarea placeholder="你的观察..." data-q="q5"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q5')">🎤 语音输入</button></div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">6</span><span class="q-title">他在什么时刻最容易「忘了」</span>
+  <p class="q-desc">描述具体场景。比如：「开会被人怼的时候」、「孩子哭闹的时候」、「深夜一个人的时候」</p>
+  <textarea placeholder="描述具体场景..." data-q="q6"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q6')">🎤 语音输入</button></div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">7</span><span class="q-title">他现在用什么方法提醒自己</span>
+  <p class="q-desc">多选</p>
+  <div class="check-group">
+    <label><input type="checkbox" value="手机屏保/壁纸" data-q="q7"><span>手机屏保/壁纸</span></label>
+    <label><input type="checkbox" value="笔记本抄写" data-q="q7"><span>笔记本抄写</span></label>
+    <label><input type="checkbox" value="贴便签" data-q="q7"><span>贴便签</span></label>
+    <label><input type="checkbox" value="戴手串/佛珠" data-q="q7"><span>戴手串/佛珠</span></label>
+    <label><input type="checkbox" value="打坐/冥想" data-q="q7"><span>打坐/冥想</span></label>
+    <label><input type="checkbox" value="听音频/播客" data-q="q7"><span>听音频/播客</span></label>
+    <label><input type="checkbox" value="什么都不做硬扛" data-q="q7"><span>什么都不做，硬扛</span></label>
+  </div>
+  <input type="text" id="q7_other" placeholder="其他补充..." style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #d4c9b8;border-radius:6px;font-size:14px">
+  <label style="font-size:13px;margin-top:6px;display:block"><input type="checkbox" onchange="document.getElementById('q7_other').style.display=this.checked?'block':'none'"> 有补充</label>
+</div>
+
+<div class="q-block">
+  <span class="q-num">8</span><span class="q-title">这些方法为什么失效</span>
+  <p class="q-desc">多选，你觉得最主要的原因</p>
+  <div class="check-group">
+    <label><input type="checkbox" value="看了就忘" data-q="q8"><span>看了就忘——视觉提醒太容易忽略</span></label>
+    <label><input type="checkbox" value="手在动心没动" data-q="q8"><span>手在动心没动——抄经/盘串变机械动作</span></label>
+    <label><input type="checkbox" value="太刻意不好意思" data-q="q8"><span>太刻意了不好意思——在别人面前尴尬</span></label>
+    <label><input type="checkbox" value="环境打断" data-q="q8"><span>环境打断——想起来时没条件做</span></label>
+    <label><input type="checkbox" value="忘了带" data-q="q8"><span>忘了带/丢了——物理物品不在身边</span></label>
+    <label><input type="checkbox" value="自己也不信" data-q="q8"><span>自己也不信——深处觉得没用</span></label>
+  </div>
+  <input type="text" id="q8_other" placeholder="其他原因..." style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #d4c9b8;border-radius:6px;font-size:14px">
+  <label style="font-size:13px;margin-top:6px;display:block"><input type="checkbox" onchange="document.getElementById('q8_other').style.display=this.checked?'block':'none'"> 有补充</label>
+</div>
+
+<!-- 第三部分 -->
+<div class="section-header">第三部分：购买动机与定价</div>
+
+<div class="q-block">
+  <span class="q-num">9</span><span class="q-title">他为什么愿意为金器买单</span>
+  <p class="q-desc">排序（1=最重要，4=最不重要）</p>
+  <div class="rank-group">
+    <div class="rank-row"><span>提醒自己——「需要能被摸到的提醒」</span><select data-q="q9" data-item="提醒自己"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+    <div class="rank-row"><span>对自己有意义——「这句话改变了我」</span><select data-q="q9" data-item="对自己有意义"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+    <div class="rank-row"><span>好看——「它本身是美的」</span><select data-q="q9" data-item="好看"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+    <div class="rank-row"><span>身份表达——「说明我是怎样的人」</span><select data-q="q9" data-item="身份表达"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">10</span><span class="q-title">他愿意花多少钱</span>
+  <div class="radio-group">
+    <label><input type="radio" name="q10" value="300-800" data-q="q10"><span>¥300–800（「试试看」的价格）</span></label>
+    <label><input type="radio" name="q10" value="800-2000" data-q="q10"><span>¥800–2000（「认真对待」的价格）</span></label>
+    <label><input type="radio" name="q10" value="2000-5000" data-q="q10"><span>¥2000–5000（「对自己有意义」的价格）</span></label>
+    <label><input type="radio" name="q10" value="5000-15000" data-q="q10"><span>¥5000–15000（「传家/重要」的价格）</span></label>
+    <label><input type="radio" name="q10" value="15000+" data-q="q10"><span>¥15000+（「收藏级」的价格）</span></label>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">11</span><span class="q-title">这个价格判断的依据是什么</span>
+  <p class="q-desc">他花类似的钱在别的地方的例子。比如：花¥2000买课不眨眼，买物品会犹豫吗？</p>
+  <textarea placeholder="你的观察..." data-q="q11"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q11')">🎤 语音输入</button></div>
+</div>
+
+<!-- 第四部分 -->
+<div class="section-header">第四部分：他在哪 + 分享给谁</div>
+
+<div class="q-block">
+  <span class="q-num">12</span><span class="q-title">他平时在哪些平台花时间</span>
+  <p class="q-desc">排序（1=最多时间）</p>
+  <div class="rank-group">
+    <div class="rank-row"><span>微信/视频号</span><select data-q="q12" data-item="微信视频号"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+    <div class="rank-row"><span>小红书</span><select data-q="q12" data-item="小红书"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+    <div class="rank-row"><span>抖音</span><select data-q="q12" data-item="抖音"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+    <div class="rank-row"><span>B站</span><select data-q="q12" data-item="B站"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+    <div class="rank-row"><span>知乎</span><select data-q="q12" data-item="知乎"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+    <div class="rank-row"><span>得到/喜马拉雅</span><select data-q="q12" data-item="得到喜马拉雅"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+    <div class="rank-row"><span>线下活动/课程</span><select data-q="q12" data-item="线下活动"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">13</span><span class="q-title">他什么时候看这些内容</span>
+  <div class="radio-group">
+    <label><input type="radio" name="q13" value="白天碎片" data-q="q13"><span>A. 白天碎片时间</span></label>
+    <label><input type="radio" name="q13" value="晚上睡前" data-q="q13"><span>B. 晚上睡前</span></label>
+    <label><input type="radio" name="q13" value="周末整块" data-q="q13"><span>C. 周末整块时间</span></label>
+    <label><input type="radio" name="q13" value="通勤路上" data-q="q13"><span>D. 通勤路上</span></label>
+    <label><input type="radio" name="q13" value="深夜22点后" data-q="q13"><span>E. 深夜（22:00后）</span></label>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">14</span><span class="q-title">如果受益了，他会分享给谁</span>
+  <p class="q-desc">排序（1=最先分享）</p>
+  <div class="rank-group">
+    <div class="rank-row"><span>伴侣/家人</span><select data-q="q14" data-item="伴侣家人"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+    <div class="rank-row"><span>面临同样困境的朋友</span><select data-q="q14" data-item="困境朋友"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+    <div class="rank-row"><span>生意伙伴/客户</span><select data-q="q14" data-item="生意伙伴"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+    <div class="rank-row"><span>不分享，被注意到才说</span><select data-q="q14" data-item="不主动分享"><option value="">请排</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">15</span><span class="q-title">他会怎么跟别人描述这件东西</span>
+  <p class="q-desc">不是品牌文案。是他自己的话。比如：「我最近戴了个东西，挺管用的……」</p>
+  <textarea placeholder="他会怎么说..." data-q="q15"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q15')">🎤 语音输入</button></div>
+</div>
+
+<!-- 第五部分 -->
+<div class="section-header">第五部分：品牌气质匹配</div>
+
+<div class="q-block">
+  <span class="q-num">16</span><span class="q-title">他会认同哪种描述</span>
+  <div class="radio-group">
+    <label><input type="radio" name="q16" value="不装不吵不硌不堵不抢" data-q="q16"><span>A. 「不装不吵不硌不堵不抢」——他需要的就是这样的</span></label>
+    <label><input type="radio" name="q16" value="低调但有分量" data-q="q16"><span>B. 「低调但有分量」——不喜欢太显眼，但不能廉价</span></label>
+    <label><input type="radio" name="q16" value="一看就知道不便宜" data-q="q16"><span>C. 「一看就知道不便宜」——需要别人看得出来</span></label>
+    <label><input type="radio" name="q16" value="好看就行" data-q="q16"><span>D. 「好看就行，气质无所谓」</span></label>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">17</span><span class="q-title">他会在什么场合戴/用</span>
+  <p class="q-desc">多选</p>
+  <div class="check-group">
+    <label><input type="checkbox" value="日常每天戴" data-q="q17"><span>日常戴（每天都戴）</span></label>
+    <label><input type="checkbox" value="重要场合" data-q="q17"><span>重要场合（见人/开会）</span></label>
+    <label><input type="checkbox" value="独处时" data-q="q17"><span>独处时（一个人的仪式）</span></label>
+    <label><input type="checkbox" value="固定位置" data-q="q17"><span>放在固定位置（书桌/茶台）</span></label>
+  </div>
+</div>
+
+<!-- 第六部分 -->
+<div class="section-header">第六部分：你的直觉盲区</div>
+
+<div class="q-block">
+  <span class="q-num">18</span><span class="q-title">关于「谁会买这个品牌」——你有什么不确定的</span>
+  <p class="q-desc">哪些判断你觉得自己可能想错了？哪些想找数据验证？</p>
+  <textarea placeholder="你的不确定..." data-q="q18"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q18')">🎤 语音输入</button></div>
+</div>
+
+<div class="q-block">
+  <span class="q-num">19</span><span class="q-title">如果只能选一个人作为首发客群</span>
+  <p class="q-desc">不要想市场大小。你最想把第一件产品交到谁手上？</p>
+  <textarea placeholder="你的回答..." data-q="q19"></textarea>
+  <div style="margin-top:6px"><button class="voice-btn" onclick="startVoice(this,'q19')">🎤 语音输入</button></div>
+</div>
+
+<!-- Submit -->
+<div class="submit-section">
+  <button class="submit-btn" onclick="submitSurvey()">📤 提交问卷</button>
+  <div class="status" id="status"></div>
+</div>
+</div>
+
+<div class="footer">伟大印记 · 定客群创始人问卷 | 你的直觉是品牌最重要的数据源</div>
+
+<script>
+function startVoice(btn, qKey) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) { alert('您的浏览器不支持语音输入。请用 Safari 或 Chrome 打开。'); return; }
+  if (!btn._recog) {
+    btn._recog = new SpeechRecognition();
+    btn._recog.lang = 'zh-CN';
+    btn._recog.interimResults = true;
+    btn._recog.continuous = true;
+  }
+  const recog = btn._recog;
+  if (btn.classList.contains('recording')) {
+    recog.stop();
+    btn.classList.remove('recording');
+    btn.textContent = '🎤 语音输入';
+    return;
+  }
+  btn.classList.add('recording');
+  btn.textContent = '🔴 录音中...点击停止';
+  const textarea = document.querySelector('[data-q="'+qKey+'"]');
+  recog.onresult = (e) => {
+    let t = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) t += e.results[i][0].transcript;
+    textarea.value = t;
+  };
+  recog.onerror = () => { btn.classList.remove('recording'); btn.textContent = '🎤 语音输入'; };
+  recog.onend = () => { btn.classList.remove('recording'); btn.textContent = '🎤 语音输入'; };
+  recog.start();
+}
+
+function submitSurvey() {
+  const data = { timestamp: new Date().toISOString(), version: 'founder' };
+  const seen = new Set();
+
+  // Textareas
+  document.querySelectorAll('textarea[data-q]').forEach(ta => {
+    if (ta.value.trim()) data[ta.getAttribute('data-q')] = ta.value.trim();
+    seen.add(ta.getAttribute('data-q'));
+  });
+
+  // Radio
+  document.querySelectorAll('input[type=radio][data-q]:checked').forEach(r => {
+    data[r.getAttribute('data-q')] = r.value;
+    seen.add(r.getAttribute('data-q'));
+  });
+
+  // Checkboxes
+  const checkGroups = {};
+  document.querySelectorAll('input[type=checkbox][data-q]:checked').forEach(cb => {
+    const q = cb.getAttribute('data-q');
+    if (!checkGroups[q]) checkGroups[q] = [];
+    checkGroups[q].push(cb.value);
+    seen.add(q);
+  });
+  Object.keys(checkGroups).forEach(q => { data[q] = checkGroups[q].join(', '); });
+
+  // Rank selects
+  const rankGroups = {};
+  document.querySelectorAll('select[data-q]').forEach(sel => {
+    if (!sel.value) return;
+    const q = sel.getAttribute('data-q');
+    if (!rankGroups[q]) rankGroups[q] = {};
+    rankGroups[q][sel.getAttribute('data-item')] = sel.value;
+    seen.add(q);
+  });
+  Object.keys(rankGroups).forEach(q => { data[q] = JSON.stringify(rankGroups[q]); });
+
+  // Other inputs
+  document.querySelectorAll('input[type=text][id$="_other"]').forEach(inp => {
+    if (inp.value.trim()) data[inp.id] = inp.value.trim();
+  });
+
+  const json = JSON.stringify(data, null, 2);
+  document.getElementById('status').className = 'status success';
+  document.getElementById('status').textContent = '✅ 提交成功！以下是数据：\n\n' + json;
+  document.getElementById('status').style.display = 'block';
+  console.log('Founder Survey:', data);
+  document.getElementById('status').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
