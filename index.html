@@ -134,22 +134,9 @@ textarea.founder-textarea{min-height:100px;background:#fffef9}
 <input type="text" id="loginName" placeholder="你的名字" maxlength="50" autocomplete="name">
 <label style="margin-top:4px">手机号 / 微信号（选填）</label>
 <input type="text" id="loginContact" placeholder="方便后续回访" maxlength="60" autocomplete="tel">
-<p class="lc-hint">每次填写都是一次客群直觉的迭代沉淀，可随时查看历史版本</p>
+<p class="lc-hint">每次填写都是一次客群直觉的迭代沉淀</p>
 <button class="btn-primary" onclick="doLogin()">开始答题</button>
 </div>
-</div>
-</div>
-
-<!-- ==================== 面板视图 ==================== -->
-<div class="view" id="viewDashboard">
-<div class="dash-wrap">
-<div class="dash-user" id="dashUserCard"></div>
-<div class="dash-actions">
-<button class="btn-new" onclick="startNewSurvey()">✚ 新建调研</button>
-<button class="btn-logout" onclick="doLogout()">切换账号</button>
-</div>
-<div class="history-title">📋 历史记录</div>
-<div id="historyList"></div>
 </div>
 </div>
 
@@ -306,13 +293,13 @@ textarea.founder-textarea{min-height:100px;background:#fffef9}
 
 <div class="submit-status" id="submitStatus"></div>
 <div class="btn-row">
-<button class="btn-back" onclick="backToDashboard()">← 返回</button>
+<button class="btn-back" onclick="doLogout()">← 退出</button>
 <button class="btn-submit" id="btnSubmit" onclick="submitSurvey()">✓ 提交</button>
 </div>
 <div class="thanks-box" id="thanksBox">
 <h2>提交成功 🙏</h2>
 <p>你的客群直觉已被保存，可以随时回来迭代。</p>
-<button class="btn-back-dash" onclick="backToDashboard()">返回我的面板</button>
+<button class="btn-back-dash" onclick="doLogout()">🔁 重新填写</button>
 </div>
 </div>
 </div>
@@ -329,7 +316,6 @@ var DURATIONS = { bio: 90, 1: 240, 2: 300, 3: 300, 4: 240, 5: 240, 6: 240 }; // 
 
 // ===== State (no local storage, data lives on GitHub via Deno proxy) =====
 var currentUser = null;
-var editingSubmission = null;
 
 // ===== Audio State =====
 var mediaRecorder = null;
@@ -415,112 +401,11 @@ if (/MicroMessenger/i.test(navigator.userAgent)) {
 document.getElementById('browserNotice').style.display = 'block';
 }
 
-showDashboard();
-}
-
-async function showDashboard() {
-showView('viewDashboard');
-document.getElementById('headerSub').textContent = currentUser.name + ' 的调研面板';
-
-// Clear immediately to prevent flash of old user data
-window._dashboardSubs = null;
-document.getElementById('dashUserCard').innerHTML = '';
-document.getElementById('historyList').innerHTML = '<div class="empty-history">加载中...</div>';
-
-// Load submissions — try Deno proxy first, fallback to GitHub raw
-var subs = [];
-var all = null;
-try {
-var resp = await fetch(API_URL);
-if (resp.ok) all = await resp.json();
-} catch(e) { console.warn('Proxy fetch failed, trying GitHub fallback:', e.message); }
-
-// Fallback: read directly from GitHub raw (works even when proxy is down)
-if (!all || (Array.isArray(all) && all.length === 0)) {
-try {
-var rawResp = await fetch(
-'https://raw.githubusercontent.com/haohao2006888/tongxingzhe-survey/main/data/submissions.json',
-{ headers: { 'Accept': 'application/json' } }
-);
-if (rawResp.ok) {
-all = await rawResp.json();
-// Strip audio base64 fields (they bloat payload and aren't needed for dashboard)
-all = all.map(function(s) {
-var clean = {};
-Object.keys(s).forEach(function(k) {
-if (!k.endsWith('_audio') && k !== 'ua') clean[k] = s[k];
-});
-return clean;
-});
-}
-} catch(e2) { console.error('GitHub fallback also failed:', e2.message); }
-}
-
-if (all) {
-subs = all.filter(function(s) { return s.userName === currentUser.name; });
-subs.sort(function(a, b) { return new Date(b.time) - new Date(a.time); });
-}
-
-// User card
-var card = document.getElementById('dashUserCard');
-card.innerHTML =
-'<div class="du-name">' + escapeHtml(currentUser.name) + '</div>' +
-'<div class="du-meta">📋 共 ' + subs.length + ' 篇记录' +
-(currentUser.contact ? ' · ' + escapeHtml(currentUser.contact) : '') +
-'</div>';
-
-// History
-var list = document.getElementById('historyList');
-if (subs.length === 0) {
-list.innerHTML = '<div class="empty-history">还没有记录，点击「新建调研」开始吧</div>';
-} else {
-list.innerHTML = subs.map(function(s, i) {
-var d = new Date(s.time);
-var dateStr = d.getFullYear() + '/' + pad(d.getMonth()+1) + '/' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
-var preview = (s.part1_text || s.part2_text || s.part3_text || s.part4_text || s.part5_text || s.part6_text || '').substring(0, 60);
-var parts = [];
-if (s.part1_text) parts.push('客群');
-if (s.part2_text) parts.push('行为');
-if (s.part3_text) parts.push('时机');
-if (s.part4_text) parts.push('场景');
-if (s.part5_text) parts.push('定价');
-if (s.part6_text) parts.push('分享');
-return '<div class="history-item" onclick="viewSubmission(' + i + ')">' +
-'<div class="hi-date">' + dateStr + '</div>' +
-'<div class="hi-preview">' + escapeHtml(preview) + (preview.length >= 60 ? '...' : '') + '</div>' +
-'<div class="hi-parts">' + parts.join(' · ') + '</div>' +
-'</div>';
-}).join('');
-}
-// Store subs for viewSubmission reference
-window._dashboardSubs = subs;
-}
-
-function viewSubmission(idx) {
-var sub = window._dashboardSubs && window._dashboardSubs[idx];
-if (!sub) return;
-editingSubmission = sub;
 showView('viewSurvey');
-resetSurveyForm();
-fillSurveyForm(sub);
-document.getElementById('submitStatus').textContent = '📖 历史版本（只读）';
-document.getElementById('submitStatus').className = 'submit-status';
-document.getElementById('thanksBox').classList.remove('show');
-document.getElementById('surveyForm').style.display = '';
-var btn = document.getElementById('btnSubmit');
-btn.style.display = 'none';
-document.querySelector('.btn-back').textContent = '← 返回面板';
-}
-
-function fillSurveyForm(sub) {
-document.getElementById('text-bio').value = sub.bio || '';
-for (var i = 1; i <= 6; i++) {
-document.getElementById('text-part' + i).value = sub['part' + i + '_text'] || '';
-}
+startNewSurvey();
 }
 
 function startNewSurvey() {
-editingSubmission = null;
 showView('viewSurvey');
 resetSurveyForm();
 document.getElementById('submitStatus').textContent = '';
@@ -529,7 +414,7 @@ document.getElementById('thanksBox').classList.remove('show');
 document.getElementById('surveyForm').style.display = '';
 document.getElementById('btnSubmit').textContent = '✓ 提交';
 document.getElementById('btnSubmit').style.display = '';
-document.querySelector('.btn-back').textContent = '← 返回';
+document.querySelector('.btn-back').textContent = '← 退出';
 
 // Keep-warm: pre-ping STT proxy to eliminate cold start
 var keepWarm = new XMLHttpRequest();
@@ -537,26 +422,15 @@ keepWarm.open('GET', STT_URL, true);
 keepWarm.send();
 }
 
-function backToDashboard() {
-stopAllRecording();
-editingSubmission = null;
-showDashboard();
-}
-
 function doLogout() {
 stopAllRecording();
 currentUser = null;
-editingSubmission = null;
-window._dashboardSubs = null;
 audioBlobs = {};
 resetSurveyForm();
-// Clear dashboard DOM to prevent cross-account data leak
-document.getElementById('dashUserCard').innerHTML = '';
-document.getElementById('historyList').innerHTML = '';
 document.getElementById('loginName').value = '';
 document.getElementById('loginContact').value = '';
 document.getElementById('browserNotice').style.display = 'none';
-document.getElementById('headerSub').textContent = '请用语音说出你的真实想法';
+document.getElementById('headerSub').textContent = '基于六条决策框架的客群直觉判断';
 showView('viewLogin');
 }
 
@@ -971,15 +845,12 @@ if (ap) ap.classList.remove('show');
 var audio = document.getElementById('audio-' + partName(part));
 if (audio) { audio.src = ''; audio.removeAttribute('data-blob-url'); }
 
-// Clear textarea only in new-survey mode (text came from recording)
-// In edit mode, text is saved data from server — keep it
-if (!editingSubmission) {
+// Clear textarea
 var textareaId = (part === 'bio') ? 'text-bio' : 'text-part' + part;
 var textarea = document.getElementById(textareaId);
 if (textarea) {
 textarea.value = '';
 textarea.removeAttribute('data-speech-active');
-}
 }
 }
 
