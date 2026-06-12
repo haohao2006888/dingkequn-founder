@@ -657,7 +657,6 @@ if (activeStream) activeStream.getTracks().forEach(function(t) { t.stop(); });
 try { mediaRecorder.stop(); } catch(e) {}
 }
 mediaRecorder = null;
-stopSpeechRecognition();
 currentPartKey = null;
 currentVoiceBar = null;
 secondsLeft = 0;
